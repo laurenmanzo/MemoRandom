@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SpeechKit/SpeechKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextViewDelegate, SpeechKitDelegate, SKRecognizerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (nonatomic, strong) SKRecognizer *voiceSearch;
+
+- (IBAction)recordButtonPressed:(id)sender;
+- (IBAction)playbackButtonPressed:(id)sender;
+- (IBAction)readbackButtonPressed:(id)sender;
 
 @end
