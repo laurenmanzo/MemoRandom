@@ -65,7 +65,6 @@
                     </view>
                     <connections>
                         <outlet property="messageLabel" destination="uVE-zd-0Ik" id="tup-xF-ZUc"/>
-                        <outlet property="readbackButtonPressed" destination="XMq-4J-VBU" id="bFG-bj-CWf"/>
                         <outlet property="recordButton" destination="a30-3s-e58" id="Gzj-Sr-JDW"/>
                         <outlet property="textView" destination="HsW-m9-wNl" id="I7w-WW-B7O"/>
                     </connections>

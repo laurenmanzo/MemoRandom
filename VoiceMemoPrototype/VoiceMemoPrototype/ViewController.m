@@ -49,16 +49,27 @@ const unsigned char SpeechKitApplicationKey[] = {
             [self.voiceSearch stopRecording];
             //[self.voiceSearch cancel];
         }
+		if (self.isSpeaking) {
+			[self.vocalizer cancel];
+			self.isSpeaking = NO;
+		}
     }
 }
 
 - (IBAction)playbackButtonPressed:(id)sender {
+	
 }
 
 - (IBAction)readbackButtonPressed:(id)sender {
-}
-
-- (IBAction)playButtonPressed:(id)sender {
+	if (self.isSpeaking) {
+		[self.vocalizer cancel];
+	}
+	
+	self.isSpeaking = YES;
+	
+	self.vocalizer = [[SKVocalizer alloc] initWithLanguage:@"en_US" delegate:self];
+	
+	[self.vocalizer speakString:self.textView.text];
 }
 
 # pragma mark - SKRecognizer Delegate Methods
@@ -98,6 +109,29 @@ const unsigned char SpeechKitApplicationKey[] = {
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];
+}
+
+# pragma mark - SKVocalizer Delegate Methods
+
+- (void)vocalizer:(SKVocalizer *)vocalizer willBeginSpeakingString:(NSString *)text {
+    self.isSpeaking = YES;
+}
+
+- (void)vocalizer:(SKVocalizer *)vocalizer didFinishSpeakingString:(NSString *)text withError:(NSError *)error {
+	if (error != nil) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+														message:[error localizedDescription]
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		
+		if (self.isSpeaking) {
+			[self.vocalizer cancel];
+		}
+    }
+	
+    self.isSpeaking = NO;
 }
 
 
