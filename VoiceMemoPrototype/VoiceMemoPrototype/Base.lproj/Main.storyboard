@@ -17,9 +17,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a30-3s-e58">
-                                <rect key="frame" x="20" y="50" width="50" height="30"/>
+                                <rect key="frame" x="20" y="50" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Record">
+                                <state key="normal" title="Record to Text">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiF-Mc-CkM">
-                                <rect key="frame" x="129" y="50" width="63" height="30"/>
+                                <rect key="frame" x="237" y="20" width="63" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Playback">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,12 +60,24 @@
                                     <action selector="readbackButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rKf-CL-hyi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xb-Yx-ABs">
+                                <rect key="frame" x="20" y="20" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Record to Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordToAudioButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HVn-bB-AFP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="messageLabel" destination="uVE-zd-0Ik" id="tup-xF-ZUc"/>
+                        <outlet property="playbackButton" destination="hiF-Mc-CkM" id="iHF-fq-P1c"/>
                         <outlet property="recordButton" destination="a30-3s-e58" id="Gzj-Sr-JDW"/>
+                        <outlet property="recordToAudioButton" destination="5Xb-Yx-ABs" id="wRz-GZ-n26"/>
                         <outlet property="textView" destination="HsW-m9-wNl" id="I7w-WW-B7O"/>
                     </connections>
                 </viewController>

@@ -22,8 +22,9 @@ const unsigned char SpeechKitApplicationKey[] = {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [VoiceMemoPrototypeAppDelegate setupSpeechKitConnection];
+	[self setupAVAudioRecorder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,8 +57,43 @@ const unsigned char SpeechKitApplicationKey[] = {
     }
 }
 
+- (IBAction)recordToAudioButtonPressed:(id)sender {
+	if (!self.audioRecorder.recording)
+	{
+		self.playbackButton.enabled = NO;
+		[self.audioRecorder record];
+	} else {
+		self.playbackButton.enabled = YES;
+		self.recordButton.enabled = YES;
+		
+		if (self.audioRecorder.recording)
+		{
+            [self.audioRecorder stop];
+		}
+	}
+}
+
 - (IBAction)playbackButtonPressed:(id)sender {
-	
+	if (!self.audioRecorder.recording)
+    {
+		if (!self.audioPlayer.playing) {
+        	NSError *error;
+			
+			self.audioPlayer = [[AVAudioPlayer alloc]
+								initWithContentsOfURL:self.audioRecorder.url
+								error:&error];
+			
+			self.audioPlayer.delegate = self;
+			
+			if (error)
+				NSLog(@"Error: %@",
+					  [error localizedDescription]);
+			else
+				[self.audioPlayer play];
+		} else {
+            [self.audioPlayer stop];
+		}
+	}
 }
 
 - (IBAction)readbackButtonPressed:(id)sender {
@@ -134,5 +170,62 @@ const unsigned char SpeechKitApplicationKey[] = {
     self.isSpeaking = NO;
 }
 
+# pragma mark - AVAudioRecorder Delegate methods
+
+- (void)setupAVAudioRecorder {
+	_playbackButton.enabled = NO;
+	NSArray *dirPaths;
+	NSString *docsDir;
+	
+	dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	docsDir = [dirPaths firstObject];
+	
+	NSString *soundFilePath = [docsDir stringByAppendingString:@"sound.caf"];
+	
+	NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+	
+	NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+									[NSNumber numberWithInt:AVAudioQualityMin], AVEncoderAudioQualityKey,
+									[NSNumber numberWithInt:16], AVEncoderBitRateKey,
+									[NSNumber numberWithInt:2], AVNumberOfChannelsKey,
+									[NSNumber numberWithFloat:44100.0], AVSampleRateKey,
+									nil];
+	
+	NSError *error = nil;
+	
+	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+	[audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+	
+	_audioRecorder = [[AVAudioRecorder alloc]initWithURL:soundFileURL settings:recordSettings error:&error];
+	
+	if (error) {
+		NSLog(@"error: %@", [error localizedDescription]);
+	} else {
+		[_audioRecorder prepareToRecord];
+	}
+}
+
+# pragma mark AVAudioPlayer delegate methods
+
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+	_recordButton.enabled = YES;
+}
+
+-(void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+	NSLog(@"Decode Error occurred");
+}
+
+# pragma mark AVAudioRecorder Delegate methods
+
+-(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
+{
+}
+
+-(void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
+{
+	NSLog(@"Encode Error occurred");
+}
 
 @end
