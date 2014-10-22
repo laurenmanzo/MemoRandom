@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  MemosNavigationController.h
 //  MemoRandom
 //
 //  Created by Lauren Manzo on 26/10/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface MemosNavigationController : UINavigationController
 
 @end
