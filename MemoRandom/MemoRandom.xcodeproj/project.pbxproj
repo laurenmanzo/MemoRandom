@@ -36,6 +36,12 @@
 		9CA2AB0A19FCC23800452C77 /* MemosNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0919FCC23800452C77 /* MemosNavigationController.m */; };
 		9CA2AB0D19FCC28D00452C77 /* MemosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0C19FCC28D00452C77 /* MemosTableViewController.m */; };
 		9CA2AB1019FCC30B00452C77 /* MemoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0F19FCC30B00452C77 /* MemoDetailViewController.m */; };
+		9CA2AB1319FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2AB1119FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld */; };
+		9CA2AB1819FCCE8000452C77 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1719FCCE8000452C77 /* CFNetwork.framework */; };
+		9CA2AB1A19FCCE9100452C77 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1919FCCE9100452C77 /* Security.framework */; };
+		9CA2AB1C19FCCEAD00452C77 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */; };
+		9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */; };
+		9CA2AB2519FCE21400452C77 /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2AB2419FCE21400452C77 /* Memo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +93,13 @@
 		9CA2AB0C19FCC28D00452C77 /* MemosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemosTableViewController.m; sourceTree = "<group>"; };
 		9CA2AB0E19FCC30B00452C77 /* MemoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoDetailViewController.h; sourceTree = "<group>"; };
 		9CA2AB0F19FCC30B00452C77 /* MemoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoDetailViewController.m; sourceTree = "<group>"; };
+		9CA2AB1219FCC9AB00452C77 /* MemoRandomModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoRandomModel.xcdatamodel; sourceTree = "<group>"; };
+		9CA2AB1719FCCE8000452C77 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9CA2AB1919FCCE9100452C77 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MicrophoneImage.png; path = ../../../../../Screenshots/MicrophoneImage.png; sourceTree = "<group>"; };
+		9CA2AB2319FCE21400452C77 /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
+		9CA2AB2419FCE21400452C77 /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,14 +107,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA2AB1C19FCCEAD00452C77 /* CoreData.framework in Frameworks */,
 				9CA2AAF719FCBBC700452C77 /* SpeechKit.framework in Frameworks */,
-				9CA2AAB919FCBBC700452C77 /* CoreGraphics.framework in Frameworks */,
-				9CA2AAF519FCBBC700452C77 /* AVFoundation.framework in Frameworks */,
-				9CA2AAF319FCBBC700452C77 /* CoreAudio.framework in Frameworks */,
 				9CA2AAF119FCBBC700452C77 /* AudioToolbox.framework in Frameworks */,
+				9CA2AAF519FCBBC700452C77 /* AVFoundation.framework in Frameworks */,
+				9CA2AB1819FCCE8000452C77 /* CFNetwork.framework in Frameworks */,
+				9CA2AAB919FCBBC700452C77 /* CoreGraphics.framework in Frameworks */,
+				9CA2AAF319FCBBC700452C77 /* CoreAudio.framework in Frameworks */,
+				9CA2AAB719FCBBC700452C77 /* Foundation.framework in Frameworks */,
+				9CA2AB1A19FCCE9100452C77 /* Security.framework in Frameworks */,
 				9CA2AAEF19FCBBC700452C77 /* SystemConfiguration.framework in Frameworks */,
 				9CA2AABB19FCBBC700452C77 /* UIKit.framework in Frameworks */,
-				9CA2AAB719FCBBC700452C77 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +156,9 @@
 		9CA2AAB519FCBBC700452C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */,
+				9CA2AB1919FCCE9100452C77 /* Security.framework */,
+				9CA2AB1719FCCE8000452C77 /* CFNetwork.framework */,
 				9CA2AAF619FCBBC700452C77 /* SpeechKit.framework */,
 				9CA2AAF419FCBBC700452C77 /* AVFoundation.framework */,
 				9CA2AAF219FCBBC700452C77 /* CoreAudio.framework */,
@@ -170,8 +189,11 @@
 				9CA2AB0F19FCC30B00452C77 /* MemoDetailViewController.m */,
 				9CA2AB0519FCBFC000452C77 /* UITabBarItem+SelectedImageName.h */,
 				9CA2AB0619FCBFC500452C77 /* UITabBarItem+SelectedImageName.m */,
+				9CA2AB2319FCE21400452C77 /* Memo.h */,
+				9CA2AB2419FCE21400452C77 /* Memo.m */,
 				9CA2AAD119FCBBC700452C77 /* Images.xcassets */,
 				9CA2AABD19FCBBC700452C77 /* Supporting Files */,
+				9CA2AB1119FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld */,
 			);
 			path = MemoRandom;
 			sourceTree = "<group>";
@@ -211,6 +233,7 @@
 		9CA2AAFE19FCBF7800452C77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */,
 				9CA2AB0319FCBF9600452C77 /* FolderSelected.png */,
 				9CA2AAFF19FCBF8C00452C77 /* SettingsSelected.png */,
 				9CA2AB0019FCBF8C00452C77 /* MicrophoneSelected.png */,
@@ -297,6 +320,7 @@
 				9CA2AAD219FCBBC700452C77 /* Images.xcassets in Resources */,
 				9CA2AAC119FCBBC700452C77 /* InfoPlist.strings in Resources */,
 				9CA2AB0419FCBF9600452C77 /* FolderSelected.png in Resources */,
+				9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */,
 				9CA2AAFC19FCBD6C00452C77 /* earcon_done_listening.wav in Resources */,
 				9CA2AB0119FCBF8C00452C77 /* SettingsSelected.png in Resources */,
 				9CA2AAFB19FCBD6C00452C77 /* earcon_cancel.wav in Resources */,
@@ -325,8 +349,10 @@
 				9CA2AB0719FCBFC500452C77 /* UITabBarItem+SelectedImageName.m in Sources */,
 				9CA2AAC719FCBBC700452C77 /* AppDelegate.m in Sources */,
 				9CA2AACD19FCBBC700452C77 /* RecordViewController.m in Sources */,
+				9CA2AB1319FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld in Sources */,
 				9CA2AAC319FCBBC700452C77 /* main.m in Sources */,
 				9CA2AB0D19FCC28D00452C77 /* MemosTableViewController.m in Sources */,
+				9CA2AB2519FCE21400452C77 /* Memo.m in Sources */,
 				9CA2AB1019FCC30B00452C77 /* MemoDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +576,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9CA2AB1119FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9CA2AB1219FCC9AB00452C77 /* MemoRandomModel.xcdatamodel */,
+			);
+			currentVersion = 9CA2AB1219FCC9AB00452C77 /* MemoRandomModel.xcdatamodel */;
+			path = MemoRandomModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9CA2AAAB19FCBBC700452C77 /* Project object */;
 }

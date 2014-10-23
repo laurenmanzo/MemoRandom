@@ -7,6 +7,8 @@
 //
 
 #import "RecordViewController.h"
+#import "AppDelegate.h"
+
 
 @interface RecordViewController ()
 
@@ -21,7 +23,16 @@ const unsigned char SpeechKitApplicationKey[] = {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+	//Setup the managed object context
+	self.managedObjectContext = MemoRandomAppDelegate.managedObjectContext;
+	
+	//Set recordingJourney to NO until they press the start button.
+	self.recordingAudio = NO;
+	
+	[MemoRandomAppDelegate setupSpeechKitConnection];
+	
+	[self setupAVAudioRecorder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,5 +40,154 @@ const unsigned char SpeechKitApplicationKey[] = {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)recordButtonPressed:(id)sender {
+	if (!self.recordingAudio) { //Start
+		
+		self.recordStopButton.title = @"Stop";
+		self.recordingAudio = YES;
+		
+		//Start timer
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timeTick:) userInfo:nil repeats:YES];
+		
+		//Store start time
+		self.startTime = [NSDate date];
+		
+		//Initialize a new speech recognizer instance
+		self.voiceSearch = [[SKRecognizer alloc] initWithType:SKDictationRecognizerType
+													detection:SKNoEndOfSpeechDetection
+													language:@"en_US"
+													delegate:self];
+		
+		//Start the AVAudioRecorder
+		[self.audioRecorder record];
+		
+	} else { //Stop
+		self.recordStopButton.title = @"Record";
+		self.recordingAudio = NO;
+		
+		//Stop timer
+		[self.timer invalidate];
+		self.timer = nil;
+		
+		//Store the elapsedTime
+		self.elapsedTime = [self.startTime timeIntervalSinceNow] * -1;
+		
+		// This will stop existing speech recognizer processes
+		if (self.voiceSearch) {
+			[self.voiceSearch stopRecording];
+			//[self.voiceSearch cancel];
+		}
+		
+		//Stop the AVAudioRecorder
+		[self.audioRecorder stop];
+		
+		[self saveMemo];
+	}
+}
+
+- (void)saveMemo {
+	
+}
+
+- (NSString*)formatTimeString:(NSTimeInterval)time {
+	//Assumes the time is no greater than 59:59.9 minutes.
+	int mins = time/60;
+	double seconds = time - (mins * 60);
+	
+	return [NSString stringWithFormat:@"%02d:%04.1f", mins, seconds];
+}
+
+- (void)timeTick:(NSTimer*)timer {
+	//Calculate elapsed time
+	NSTimeInterval elapsedTime = [self.startTime timeIntervalSinceNow] * -1;
+	
+	//Update the current time labels
+	NSString *elapsedTimeString = [self formatTimeString:elapsedTime];
+	self.timeLabel.text = elapsedTimeString;
+}
+
+# pragma mark - SKRecognizer Delegate Methods
+
+- (void)recognizerDidBeginRecording:(SKRecognizer *)recognizer {
+}
+
+- (void)recognizerDidFinishRecording:(SKRecognizer *)recognizer {
+}
+
+- (void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results {
+	long numOfResults = [results.results count];
+	
+	if (numOfResults > 0) {
+		NSString *result = [results firstResult];
+	}
+	
+	if (self.voiceSearch) {
+		[self.voiceSearch cancel];
+	}
+}
+
+- (void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion {
+	self.recordStopButton.title = @"Record";
+	self.recordingAudio = NO;
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+													message:[error localizedDescription]
+												   delegate:nil
+										  cancelButtonTitle:@"OK"
+										  otherButtonTitles:nil];
+	[alert show];
+}
+
+# pragma mark - AVAudioRecorder methods
+
+- (void)setupAVAudioRecorder {
+	NSArray *dirPaths;
+	NSString *docsDir;
+	
+	dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	docsDir = [dirPaths firstObject];
+	
+	//Create a file name using the current date.
+	NSDate *now = [NSDate date];
+	NSString *dateString = now.description;
+	NSString *soundFilePath = [docsDir stringByAppendingString:[NSString stringWithFormat:@"/%@.caf", dateString]];
+	self.soundFilePath = soundFilePath;
+	
+	NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+	
+	NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+									[NSNumber numberWithInt:AVAudioQualityMin], AVEncoderAudioQualityKey,
+									[NSNumber numberWithInt:16], AVEncoderBitRateKey,
+									[NSNumber numberWithInt:2], AVNumberOfChannelsKey,
+									[NSNumber numberWithFloat:44100.0], AVSampleRateKey,
+									nil];
+	
+	NSError *error = nil;
+	
+	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+	[audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+	
+	_audioRecorder = [[AVAudioRecorder alloc]initWithURL:soundFileURL settings:recordSettings error:&error];
+	
+	if (error) {
+		NSLog(@"error: %@", [error localizedDescription]);
+	} else {
+		[_audioRecorder prepareToRecord];
+	}
+}
+
+# pragma mark AVAudioRecorder Delegate methods
+
+-(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
+{
+}
+
+-(void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
+{
+	NSLog(@"Encode Error occurred");
+}
+
+
 
 @end
