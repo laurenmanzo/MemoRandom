@@ -12,12 +12,10 @@
 
 @interface Memo : NSManagedObject
 
+@property (nonatomic, retain) NSString * audioFilePath;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * length;
-@property (nonatomic, retain) NSString * audioFilePath;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * text;
-
-- (void)deleteAudioFile;
 
 @end

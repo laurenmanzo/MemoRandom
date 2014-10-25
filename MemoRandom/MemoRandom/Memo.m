@@ -2,7 +2,7 @@
 //  Memo.m
 //  MemoRandom
 //
-//  Created by Lauren Manzo on 26/10/14.
+//  Created by Lauren Manzo on 28/10/14.
 //  Copyright (c) 2014 Lauren Manzo. All rights reserved.
 //
 
@@ -12,9 +12,19 @@
 @implementation Memo
 
 @dynamic date;
+@dynamic length;
+@dynamic audioFilePath;
 @dynamic name;
 @dynamic text;
-@dynamic audioFilePath;
-@dynamic length;
+
+- (void)deleteAudioFile {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSError *error;
+	BOOL success = [fileManager removeItemAtPath:self.audioFilePath error:&error];
+	if (!success) {
+		NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+	}
+}
+
 
 @end

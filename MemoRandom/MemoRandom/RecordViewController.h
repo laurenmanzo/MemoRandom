@@ -11,7 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Memo.h"
 
-@interface RecordViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, SKVocalizerDelegate, AVAudioRecorderDelegate>
+@interface RecordViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, AVAudioRecorderDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 //For state
 @property (nonatomic) BOOL recordingAudio;
@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSDate* startTime;
 @property (nonatomic) NSTimeInterval elapsedTime;
 @property (nonatomic, strong) NSString *soundFilePath;
+@property (nonatomic, strong) NSString *result;
 //For user interface
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *recordStopButton;
@@ -32,8 +33,8 @@
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
 
 - (IBAction)recordButtonPressed:(id)sender;
-- (void)saveMemo;
 - (NSString*)formatTimeString:(NSTimeInterval)time;
 - (void)timeTick:(NSTimer*)timer;
 - (void)setupAVAudioRecorder;
+- (void)deleteFile:(NSString*)filePath;
 @end

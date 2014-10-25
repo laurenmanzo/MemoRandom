@@ -26,6 +26,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 	
 	//Setup the managed object context
 	self.managedObjectContext = MemoRandomAppDelegate.managedObjectContext;
+	self.memoEntityDescription = [NSEntityDescription entityForName:@"Memo" inManagedObjectContext:self.managedObjectContext];
 	
 	//Set recordingJourney to NO until they press the start button.
 	self.recordingAudio = NO;
@@ -81,13 +82,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 		
 		//Stop the AVAudioRecorder
 		[self.audioRecorder stop];
-		
-		[self saveMemo];
 	}
-}
-
-- (void)saveMemo {
-	
 }
 
 - (NSString*)formatTimeString:(NSTimeInterval)time {
@@ -119,7 +114,12 @@ const unsigned char SpeechKitApplicationKey[] = {
 	long numOfResults = [results.results count];
 	
 	if (numOfResults > 0) {
-		NSString *result = [results firstResult];
+		self.result = [results firstResult];
+		//Modal popup
+		UIAlertView *save = [[UIAlertView alloc] initWithTitle:@"Save Memo" message:@"Please enter a name" delegate:self cancelButtonTitle:@"Discard" otherButtonTitles:@"Save", nil];
+		save.alertViewStyle = UIAlertViewStylePlainTextInput;
+		[save textFieldAtIndex:0].delegate = self;
+		[save show];
 	}
 	
 	if (self.voiceSearch) {
@@ -139,6 +139,35 @@ const unsigned char SpeechKitApplicationKey[] = {
 	[alert show];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) {
+		//Cancel
+		self.result = nil;
+		self.startTime = nil;
+		self.elapsedTime = 0;
+		[self deleteFile:self.soundFilePath];
+		self.result = nil;
+	} else if (buttonIndex == 1) {
+		//Save button
+		//Store the Memo
+		//Setup data persistence
+		Memo* memo = (Memo*)[[NSManagedObject alloc] initWithEntity:self.memoEntityDescription insertIntoManagedObjectContext:self.managedObjectContext];
+		memo.date = self.startTime;
+		memo.name = [alertView textFieldAtIndex:0].text;
+		memo.text =  self.result;
+		memo.audioFilePath = self.soundFilePath;
+		memo.length = (NSString*)[self formatTimeString:self.elapsedTime];
+		
+		//Save the journey
+		NSError *error = nil;
+		
+		if (![memo.managedObjectContext save:&error]) {
+			NSLog(@"Unable to save managed object context.");
+			NSLog(@"%@, %@", error, error.localizedDescription);
+		}
+	}
+}
+
 # pragma mark - AVAudioRecorder methods
 
 - (void)setupAVAudioRecorder {
@@ -151,7 +180,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 	//Create a file name using the current date.
 	NSDate *now = [NSDate date];
 	NSString *dateString = now.description;
-	NSString *soundFilePath = [docsDir stringByAppendingString:[NSString stringWithFormat:@"/%@.caf", dateString]];
+	NSString *soundFilePath = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.caf", dateString]];
 	self.soundFilePath = soundFilePath;
 	
 	NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
@@ -186,6 +215,15 @@ const unsigned char SpeechKitApplicationKey[] = {
 -(void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
 {
 	NSLog(@"Encode Error occurred");
+}
+
+- (void)deleteFile:(NSString*)filePath {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSError *error;
+	BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+	if (!success) {
+		NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+	}
 }
 
 

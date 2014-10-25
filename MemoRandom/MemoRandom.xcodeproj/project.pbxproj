@@ -41,7 +41,7 @@
 		9CA2AB1A19FCCE9100452C77 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1919FCCE9100452C77 /* Security.framework */; };
 		9CA2AB1C19FCCEAD00452C77 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */; };
 		9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */; };
-		9CA2AB2519FCE21400452C77 /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2AB2419FCE21400452C77 /* Memo.m */; };
+		9CABC05919FF199400A6B1EB /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABC05819FF199400A6B1EB /* Memo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +98,8 @@
 		9CA2AB1919FCCE9100452C77 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MicrophoneImage.png; path = ../../../../../Screenshots/MicrophoneImage.png; sourceTree = "<group>"; };
-		9CA2AB2319FCE21400452C77 /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
-		9CA2AB2419FCE21400452C77 /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
+		9CABC05719FF199400A6B1EB /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
+		9CABC05819FF199400A6B1EB /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +189,8 @@
 				9CA2AB0F19FCC30B00452C77 /* MemoDetailViewController.m */,
 				9CA2AB0519FCBFC000452C77 /* UITabBarItem+SelectedImageName.h */,
 				9CA2AB0619FCBFC500452C77 /* UITabBarItem+SelectedImageName.m */,
-				9CA2AB2319FCE21400452C77 /* Memo.h */,
-				9CA2AB2419FCE21400452C77 /* Memo.m */,
+				9CABC05719FF199400A6B1EB /* Memo.h */,
+				9CABC05819FF199400A6B1EB /* Memo.m */,
 				9CA2AAD119FCBBC700452C77 /* Images.xcassets */,
 				9CA2AABD19FCBBC700452C77 /* Supporting Files */,
 				9CA2AB1119FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld */,
@@ -352,7 +352,7 @@
 				9CA2AB1319FCC9AB00452C77 /* MemoRandomModel.xcdatamodeld in Sources */,
 				9CA2AAC319FCBBC700452C77 /* main.m in Sources */,
 				9CA2AB0D19FCC28D00452C77 /* MemosTableViewController.m in Sources */,
-				9CA2AB2519FCE21400452C77 /* Memo.m in Sources */,
+				9CABC05919FF199400A6B1EB /* Memo.m in Sources */,
 				9CA2AB1019FCC30B00452C77 /* MemoDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +566,7 @@
 				9CA2AAEA19FCBBC700452C77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9CA2AAEB19FCBBC700452C77 /* Build configuration list for PBXNativeTarget "MemoRandomTests" */ = {
 			isa = XCConfigurationList;
@@ -574,6 +575,7 @@
 				9CA2AAED19FCBBC700452C77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
