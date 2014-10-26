@@ -7,6 +7,9 @@
 //
 
 #import "MemosTableViewController.h"
+#import "AppDelegate.h"
+#import "MemoDetailViewController.h"
+#import "Memo.h"
 
 @interface MemosTableViewController ()
 
@@ -27,11 +30,34 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Display an Edit button in the navigation bar for this view controller.
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	self.managedObjectContext = MemoRandomAppDelegate.managedObjectContext;
+	
+	//Setup the fetch request
+	NSEntityDescription *memoEntityDescription = [NSEntityDescription entityForName:@"Memo" inManagedObjectContext:self.managedObjectContext];
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:memoEntityDescription];
+	NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+	[fetchRequest setSortDescriptors:@[sortDescriptor]];
+	
+	//Initialize Fetched Results Controller
+	self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+	
+	//Configure Fetched Results Controller
+	[self.fetchedResultsController setDelegate:self];
+	
+	//Perform fetch
+	NSError *error = nil;
+	[self.fetchedResultsController performFetch:&error];
+	if (error) {
+		NSLog(@"Unable to perform fetch.");
+		NSLog(@"%@, %@", error, error.localizedDescription);
+	}
+	
+	self.tableView.allowsMultipleSelectionDuringEditing = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,76 +70,159 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+	// Return the number of sections.
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+	// Return the number of rows in the section.
+	NSArray *sections = [self.fetchedResultsController sections];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+	
+    return [sectionInfo numberOfObjects];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MemoCell" forIndexPath:indexPath];
+	[self configureCell:cell atIndexPath:indexPath];
+	
     return cell;
 }
-*/
 
-/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (!self.tableView.editing) {
+		[self performSegueWithIdentifier:@"DetailView" sender:self];
+	}
+}
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath {
+	Memo *memo = (Memo*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    //UIImageView *imageView = (UIImageView*)[cell viewWithTag:1];
+	UILabel *memoNameLabel = (UILabel*)[cell viewWithTag:1];
+	UILabel *dateLabel = (UILabel*)[cell viewWithTag:2];
+	UILabel *lengthLabel = (UILabel*)[cell viewWithTag:3];
+	
+	/*UIImage *image = nil;
+	if ([journey.photos count] > 0) {
+		image = [[UIImage alloc] initWithData:(NSData*)[[journey.photos firstObject] image]];
+	} else {
+		image = [UIImage imageNamed:@"ImageDefault"];
+	}*/
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	
+	NSString *formattedDate = [dateFormatter stringFromDate:memo.date];
+	
+	//NSString *distanceTravelled = [[NSString alloc] stringFromDistance:journey.distanceTravelled];
+	
+	//[imageView setImage:image];
+	[memoNameLabel setText:memo.name];
+	[dateLabel setText:formattedDate];
+	[lengthLabel setText:memo.length];
+}
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+	//Overridden so that a delete button can be added to the nagivation bar, to support multiple delete.
+	[super setEditing:editing animated:animated];
+	
+	if (editing) {
+		UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteButtonPressed:)];
+		self.navigationItem.leftBarButtonItem = deleteButton;
+	} else {
+		self.navigationItem.leftBarButtonItem = nil;
+	}
+}
+
+- (void)deleteButtonPressed:(id)sender {
+	NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+	BOOL rowsSelected = selectedRows.count > 0;
+	if (rowsSelected) {
+		for (int i = 0; i < selectedRows.count; i++) {
+			//Get the memo
+			Memo* memo = (Memo*)[self.fetchedResultsController objectAtIndexPath:[selectedRows objectAtIndex:i]];
+			//Delete audio file
+			[memo deleteAudioFile];
+			//Delete the row from the context
+			[self.fetchedResultsController.managedObjectContext deleteObject:memo];
+		}
+		//Commit the deletes
+		NSError *error = nil;
+		if (![self.fetchedResultsController.managedObjectContext save:&error]) {
+			NSLog(@"Unable to save managed object context.");
+			NSLog(@"%@, %@", error, error.localizedDescription);
+		}
+	}
+}
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+		Memo *memo = (Memo*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+		NSError *error = nil;
+		if (memo) {
+			[self.fetchedResultsController.managedObjectContext deleteObject:memo];
+			if (![self.fetchedResultsController.managedObjectContext save:&error]) {
+				NSLog(@"Unable to save managed object context.");
+				NSLog(@"%@, %@", error, error.localizedDescription);
+			}
+		}
+	}
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+#pragma mark - Navigation
+//Fetched Results Controller Delegate Methods
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+	[self.tableView beginUpdates];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+	[self.tableView endUpdates];
 }
-*/
 
-/*
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+	switch (type) {
+		case NSFetchedResultsChangeDelete:
+			[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+		case NSFetchedResultsChangeInsert:
+			[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+		case NSFetchedResultsChangeUpdate:
+			[self configureCell:(UITableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+			break;
+		default:
+			break;
+	}
+}
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+// Do preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+	if ([segue.identifier isEqualToString:@"DetailView"]) {
+		NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+		MemoDetailViewController *destinationViewController = segue.destinationViewController;
+		Memo *memo = [self.fetchedResultsController objectAtIndexPath:selectedIndexPath];
+		[destinationViewController setMemo:memo];
+	}
 }
-*/
+
 
 @end

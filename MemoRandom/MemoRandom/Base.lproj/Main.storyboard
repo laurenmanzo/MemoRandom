@@ -69,12 +69,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemoCell" id="uHE-mx-lpV">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemoCell" id="uHE-mx-lpV">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uHE-mx-lpV" id="YUi-iR-FMP">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memo Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amr-p2-ta3" userLabel="Label - Memo Name">
+                                            <rect key="frame" x="20" y="0.0" width="101" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yit-fz-VQ2">
+                                            <rect key="frame" x="20" y="20" width="36" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="right" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="Length" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93f-RP-UBP">
+                                            <rect key="frame" x="223" y="20" width="54" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="amr-p2-ta3" secondAttribute="centerY" constant="11" id="53u-6d-Ykt"/>
+                                        <constraint firstItem="93f-RP-UBP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="yit-fz-VQ2" secondAttribute="trailing" constant="171" id="A9h-I8-VVX"/>
+                                        <constraint firstItem="yit-fz-VQ2" firstAttribute="leading" secondItem="YUi-iR-FMP" secondAttribute="leading" constant="20" id="Emc-C3-jmI"/>
+                                        <constraint firstAttribute="trailing" secondItem="93f-RP-UBP" secondAttribute="trailing" constant="10" id="Pb8-Vd-8Uz"/>
+                                        <constraint firstItem="amr-p2-ta3" firstAttribute="leading" secondItem="YUi-iR-FMP" secondAttribute="leading" constant="20" id="T2O-S1-DvE"/>
+                                        <constraint firstItem="93f-RP-UBP" firstAttribute="top" secondItem="amr-p2-ta3" secondAttribute="bottom" constant="-1" id="XcT-se-VLa"/>
+                                        <constraint firstItem="93f-RP-UBP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yit-fz-VQ2" secondAttribute="trailing" constant="10" id="ZVw-ij-Ffq"/>
+                                        <constraint firstItem="yit-fz-VQ2" firstAttribute="top" secondItem="amr-p2-ta3" secondAttribute="bottom" constant="-1" id="ddd-dc-gQt"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

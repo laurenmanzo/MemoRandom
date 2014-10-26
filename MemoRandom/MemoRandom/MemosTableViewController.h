@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MemosTableViewController : UITableViewController
+@interface MemosTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
+- (void)deleteButtonPressed:(id)sender;
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end

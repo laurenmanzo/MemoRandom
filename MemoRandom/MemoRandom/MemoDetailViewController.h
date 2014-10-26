@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Memo.h"
 
 @interface MemoDetailViewController : UIViewController
+
+//Data
+@property (nonatomic, strong) Memo *memo;
+
+- (void)setMemo:(Memo *)memo;
 
 @end
