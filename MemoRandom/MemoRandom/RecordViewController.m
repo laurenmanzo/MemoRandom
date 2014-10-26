@@ -166,6 +166,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 			NSLog(@"%@, %@", error, error.localizedDescription);
 		}
 	}
+	[self setupAVAudioRecorder];
 }
 
 # pragma mark - AVAudioRecorder methods
