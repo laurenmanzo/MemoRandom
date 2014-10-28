@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <SpeechKit/SpeechKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <OpenEars/PocketsphinxController.h>
+#import <OpenEars/AcousticModel.h>
+#import <OpenEars/OpenEarsEventsObserver.h>
 #import "Memo.h"
 
-@interface RecordViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, AVAudioRecorderDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface RecordViewController : UIViewController <SpeechKitDelegate, SKRecognizerDelegate, AVAudioRecorderDelegate, UITextFieldDelegate, UIAlertViewDelegate, OpenEarsEventsObserverDelegate>
 
 //For state
 @property (nonatomic) BOOL recordingAudio;
@@ -31,10 +34,14 @@
 //For voice recording
 @property (nonatomic, strong) SKRecognizer *voiceSearch;
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic, strong) PocketsphinxController *pocketsphinxController;
+@property (strong, nonatomic) OpenEarsEventsObserver *openEarsEventsObserver;
 
 - (IBAction)recordButtonPressed:(id)sender;
 - (NSString*)formatTimeString:(NSTimeInterval)time;
 - (void)timeTick:(NSTimer*)timer;
 - (void)setupAVAudioRecorder;
 - (void)deleteFile:(NSString*)filePath;
+- (void)setupOpenEars;
+
 @end

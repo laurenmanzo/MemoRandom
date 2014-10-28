@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Lauren Manzo. All rights reserved.
 //
 
+#import <OpenEars/LanguageModelGenerator.h>
+#import <OpenEars/PocketsphinxController.h>
+#import <OpenEars/AcousticModel.h>
 #import "RecordViewController.h"
 #import "AppDelegate.h"
 
@@ -34,6 +37,11 @@ const unsigned char SpeechKitApplicationKey[] = {
 	[MemoRandomAppDelegate setupSpeechKitConnection];
 	
 	[self setupAVAudioRecorder];
+	
+	//[self setupOpenEars];
+	self.pocketsphinxController = [[PocketsphinxController alloc] init];
+	self.openEarsEventsObserver = [[OpenEarsEventsObserver alloc] init];
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,7 +136,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 }
 
 - (void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion {
-	self.recordStopButton.title = @"Record";
+	/*self.recordStopButton.title = @"Record";
 	self.recordingAudio = NO;
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -137,6 +145,15 @@ const unsigned char SpeechKitApplicationKey[] = {
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];
+	//Invalidate timer.
+	[self.timer invalidate];
+	self.timer = nil;*/
+	
+	//Try OpenEars
+	NSString *lmPath = [[NSBundle mainBundle] pathForResource:@"englishTop1000" ofType:@"arpa"];
+	NSString *dicPath = [[NSBundle mainBundle] pathForResource:@"englishTop1000" ofType:@"dic"];
+	[self.openEarsEventsObserver setDelegate:self];
+	[self.pocketsphinxController startListeningWithLanguageModelAtPath:lmPath dictionaryAtPath:dicPath acousticModelAtPath:[AcousticModel pathToModel:@"AcousticModelEnglish"] languageModelIsJSGF:NO];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -158,13 +175,17 @@ const unsigned char SpeechKitApplicationKey[] = {
 		memo.audioFilePath = self.soundFilePath;
 		memo.length = (NSString*)[self formatTimeString:self.elapsedTime];
 		
-		//Save the journey
+		//Save the memo
 		NSError *error = nil;
 		
 		if (![memo.managedObjectContext save:&error]) {
 			NSLog(@"Unable to save managed object context.");
 			NSLog(@"%@, %@", error, error.localizedDescription);
 		}
+		
+		//Invalidate timer.
+		[self.timer invalidate];
+		self.timer = nil;
 	}
 	[self setupAVAudioRecorder];
 }
@@ -226,6 +247,79 @@ const unsigned char SpeechKitApplicationKey[] = {
 	if (!success) {
 		NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
 	}
+}
+
+# pragma mark OpenEars methods
+
+- (void)setupOpenEars {
+	LanguageModelGenerator *lmGenerator = [[LanguageModelGenerator alloc] init];
+	NSString *myCorpus = [[NSBundle mainBundle] pathForResource:@"corpus" ofType:@"txt"];
+	NSString *name = @"englishTop1000";
+	NSError *err = [lmGenerator generateLanguageModelFromTextFile:myCorpus withFilesNamed:name forAcousticModelAtPath:[AcousticModel pathToModel:@"AcousticModelEnglish"]];
+	
+	NSDictionary *languageGeneratorResults = nil;
+	
+	NSString *lmPath = nil;
+	NSString *dicPath = nil;
+	
+	if([err code] == noErr) {
+		
+		languageGeneratorResults = [err userInfo];
+		NSLog(@"%@", languageGeneratorResults);
+		
+		lmPath = [languageGeneratorResults objectForKey:@"LMPath"];
+		dicPath = [languageGeneratorResults objectForKey:@"DictionaryPath"];
+		
+	} else {
+		NSLog(@"Error: %@",[err localizedDescription]);
+	}
+}
+
+- (void) pocketsphinxDidReceiveHypothesis:(NSString *)hypothesis recognitionScore:(NSString *)recognitionScore utteranceID:(NSString *)utteranceID {
+	NSLog(@"The received hypothesis is %@ with a score of %@ and an ID of %@", hypothesis, recognitionScore, utteranceID);
+}
+
+- (void) pocketsphinxDidStartCalibration {
+	NSLog(@"Pocketsphinx calibration has started.");
+}
+
+- (void) pocketsphinxDidCompleteCalibration {
+	NSLog(@"Pocketsphinx calibration is complete.");
+}
+
+- (void) pocketsphinxDidStartListening {
+	NSLog(@"Pocketsphinx is now listening.");
+}
+
+- (void) pocketsphinxDidDetectSpeech {
+	NSLog(@"Pocketsphinx has detected speech.");
+}
+
+- (void) pocketsphinxDidDetectFinishedSpeech {
+	NSLog(@"Pocketsphinx has detected a period of silence, concluding an utterance.");
+}
+
+- (void) pocketsphinxDidStopListening {
+	NSLog(@"Pocketsphinx has stopped listening.");
+}
+
+- (void) pocketsphinxDidSuspendRecognition {
+	NSLog(@"Pocketsphinx has suspended recognition.");
+}
+
+- (void) pocketsphinxDidResumeRecognition {
+	NSLog(@"Pocketsphinx has resumed recognition.");
+}
+
+- (void) pocketsphinxDidChangeLanguageModelToFile:(NSString *)newLanguageModelPathAsString andDictionary:(NSString *)newDictionaryPathAsString {
+	NSLog(@"Pocketsphinx is now using the following language model: \n%@ and the following dictionary: %@",newLanguageModelPathAsString,newDictionaryPathAsString);
+}
+
+- (void) pocketSphinxContinuousSetupDidFail { // This can let you know that something went wrong with the recognition loop startup. Turn on OPENEARSLOGGING to learn why.
+	NSLog(@"Setting up the continuous recognition loop has failed for some reason, please turn on OpenEarsLogging to learn more.");
+}
+- (void) testRecognitionCompleted {
+	NSLog(@"A test file that was submitted for recognition is now complete.");
 }
 
 

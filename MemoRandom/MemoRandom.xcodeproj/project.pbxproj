@@ -42,6 +42,9 @@
 		9CA2AB1C19FCCEAD00452C77 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */; };
 		9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */; };
 		9CABC05919FF199400A6B1EB /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABC05819FF199400A6B1EB /* Memo.m */; };
+		9CABC06A19FF80DD00A6B1EB /* corpus.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9CABC06919FF80DD00A6B1EB /* corpus.txt */; };
+		9CABC06D19FF823C00A6B1EB /* englishTop1000.arpa in Resources */ = {isa = PBXBuildFile; fileRef = 9CABC06B19FF823C00A6B1EB /* englishTop1000.arpa */; };
+		9CABC06E19FF823C00A6B1EB /* englishTop1000.dic in Resources */ = {isa = PBXBuildFile; fileRef = 9CABC06C19FF823C00A6B1EB /* englishTop1000.dic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,9 @@
 		9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MicrophoneImage.png; path = ../../../../../Screenshots/MicrophoneImage.png; sourceTree = "<group>"; };
 		9CABC05719FF199400A6B1EB /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
 		9CABC05819FF199400A6B1EB /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
+		9CABC06919FF80DD00A6B1EB /* corpus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = corpus.txt; path = ../corpus.txt; sourceTree = "<group>"; };
+		9CABC06B19FF823C00A6B1EB /* englishTop1000.arpa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = englishTop1000.arpa; path = ../englishTop1000.arpa; sourceTree = "<group>"; };
+		9CABC06C19FF823C00A6B1EB /* englishTop1000.dic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = englishTop1000.dic; path = ../englishTop1000.dic; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,9 @@
 		9CA2AABD19FCBBC700452C77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9CABC06B19FF823C00A6B1EB /* englishTop1000.arpa */,
+				9CABC06C19FF823C00A6B1EB /* englishTop1000.dic */,
+				9CABC06919FF80DD00A6B1EB /* corpus.txt */,
 				9CA2AAF819FCBD6C00452C77 /* earcon_cancel.wav */,
 				9CA2AAF919FCBD6C00452C77 /* earcon_done_listening.wav */,
 				9CA2AAFA19FCBD6C00452C77 /* earcon_listening.wav */,
@@ -321,11 +330,14 @@
 				9CA2AAC119FCBBC700452C77 /* InfoPlist.strings in Resources */,
 				9CA2AB0419FCBF9600452C77 /* FolderSelected.png in Resources */,
 				9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */,
+				9CABC06D19FF823C00A6B1EB /* englishTop1000.arpa in Resources */,
 				9CA2AAFC19FCBD6C00452C77 /* earcon_done_listening.wav in Resources */,
 				9CA2AB0119FCBF8C00452C77 /* SettingsSelected.png in Resources */,
 				9CA2AAFB19FCBD6C00452C77 /* earcon_cancel.wav in Resources */,
 				9CA2AAFD19FCBD6C00452C77 /* earcon_listening.wav in Resources */,
+				9CABC06E19FF823C00A6B1EB /* englishTop1000.dic in Resources */,
 				9CA2AB0219FCBF8C00452C77 /* MicrophoneSelected.png in Resources */,
+				9CABC06A19FF80DD00A6B1EB /* corpus.txt in Resources */,
 				9CA2AACA19FCBBC700452C77 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +493,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/laurenmanzo/Downloads/DragonMobileSDK_1.4.12,
+					"$(PROJECT_DIR)/Framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MemoRandom/MemoRandom-Prefix.pch";
@@ -498,6 +511,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/laurenmanzo/Downloads/DragonMobileSDK_1.4.12,
+					"$(PROJECT_DIR)/Framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MemoRandom/MemoRandom-Prefix.pch";
