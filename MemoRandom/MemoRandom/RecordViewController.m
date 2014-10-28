@@ -216,6 +216,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 -(void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
 {
 	NSLog(@"Encode Error occurred");
+	[self deleteFile:self.soundFilePath];
 }
 
 - (void)deleteFile:(NSString*)filePath {

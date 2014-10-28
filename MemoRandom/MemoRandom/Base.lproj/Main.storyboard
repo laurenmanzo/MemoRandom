@@ -135,9 +135,73 @@
                     <view key="view" contentMode="scaleToFill" id="M1A-0V-hCh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEV-wi-DFA">
+                                <rect key="frame" x="20" y="69" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Play">
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" image="Pause"/>
+                                <connections>
+                                    <action selector="playPauseButtonPressed:" destination="uOP-Tq-li5" eventType="touchUpInside" id="Ap2-0m-G4n"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-k9-0Kw">
+                                <rect key="frame" x="257" y="82" width="43" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="CAi-5O-r22">
+                                <rect key="frame" x="86" y="78" width="153" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="seekTime:" destination="uOP-Tq-li5" eventType="valueChanged" id="CjR-IR-oJf"/>
+                                </connections>
+                            </slider>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDe-Ao-u2o">
+                                <rect key="frame" x="20" y="125" width="280" height="394"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTL-l2-k5M">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="394"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" secondItem="yTL-l2-k5M" secondAttribute="height" id="8Mn-pa-84C"/>
+                                    <constraint firstAttribute="width" secondItem="yTL-l2-k5M" secondAttribute="width" id="CgI-j4-q6h"/>
+                                    <constraint firstAttribute="centerX" secondItem="yTL-l2-k5M" secondAttribute="centerX" id="RJs-57-wzH"/>
+                                    <constraint firstAttribute="centerY" secondItem="yTL-l2-k5M" secondAttribute="centerY" id="Tzs-qf-htU"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CAi-5O-r22" firstAttribute="leading" secondItem="xEV-wi-DFA" secondAttribute="trailing" constant="20" id="43J-dY-p2F"/>
+                            <constraint firstItem="xEV-wi-DFA" firstAttribute="top" secondItem="6gE-ax-9On" secondAttribute="bottom" constant="5" id="7OJ-Et-VYb"/>
+                            <constraint firstItem="QDe-Ao-u2o" firstAttribute="leading" secondItem="M1A-0V-hCh" secondAttribute="leading" constant="20" id="Djk-al-O1w"/>
+                            <constraint firstAttribute="trailing" secondItem="PEA-k9-0Kw" secondAttribute="trailing" constant="20" id="GSa-Sa-bZ4"/>
+                            <constraint firstItem="z2F-5p-yEh" firstAttribute="top" secondItem="QDe-Ao-u2o" secondAttribute="bottom" id="TPb-RP-x3f"/>
+                            <constraint firstItem="QDe-Ao-u2o" firstAttribute="top" secondItem="xEV-wi-DFA" secondAttribute="bottom" constant="8" id="dIO-Xm-hFs"/>
+                            <constraint firstItem="xEV-wi-DFA" firstAttribute="centerY" secondItem="PEA-k9-0Kw" secondAttribute="centerY" constant="0.5" id="hRa-JI-PnY"/>
+                            <constraint firstItem="xEV-wi-DFA" firstAttribute="leading" secondItem="M1A-0V-hCh" secondAttribute="leading" constant="20" id="mEg-uq-SGg"/>
+                            <constraint firstItem="PEA-k9-0Kw" firstAttribute="leading" secondItem="CAi-5O-r22" secondAttribute="trailing" constant="20" id="oLg-ev-ReT"/>
+                            <constraint firstAttribute="trailing" secondItem="QDe-Ao-u2o" secondAttribute="trailing" constant="20" id="wHA-ds-yQR"/>
+                            <constraint firstItem="CAi-5O-r22" firstAttribute="centerY" secondItem="xEV-wi-DFA" secondAttribute="centerY" id="y5U-6n-PWb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p58-PE-3MJ"/>
+                    <connections>
+                        <outlet property="playPauseButton" destination="xEV-wi-DFA" id="gld-as-cJy"/>
+                        <outlet property="slider" destination="CAi-5O-r22" id="zcT-3z-nPk"/>
+                        <outlet property="textView" destination="yTL-l2-k5M" id="cz7-64-9am"/>
+                        <outlet property="timeLabel" destination="PEA-k9-0Kw" id="v6P-Hu-mu6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="728-zc-RLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -187,6 +251,8 @@
         <image name="Folder" width="30" height="26"/>
         <image name="Microphone" width="17" height="30"/>
         <image name="MicrophoneImage.png" width="735" height="1005"/>
+        <image name="Pause" width="32" height="32"/>
+        <image name="Play" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
