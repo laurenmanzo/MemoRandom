@@ -125,12 +125,13 @@ const unsigned char SpeechKitApplicationKey[] = {
 	
 	if (numOfResults > 0) {
 		self.result = [results firstResult];
-		//Modal popup
-		UIAlertView *save = [[UIAlertView alloc] initWithTitle:@"Save Memo" message:@"Please enter a name" delegate:self cancelButtonTitle:@"Discard" otherButtonTitles:@"Save", nil];
-		save.alertViewStyle = UIAlertViewStylePlainTextInput;
-		[save textFieldAtIndex:0].delegate = self;
-		[save show];
 	}
+	
+	//Modal popup
+	UIAlertView *save = [[UIAlertView alloc] initWithTitle:@"Save Memo" message:@"Please enter a name" delegate:self cancelButtonTitle:@"Discard" otherButtonTitles:@"Save", nil];
+	save.alertViewStyle = UIAlertViewStylePlainTextInput;
+	[save textFieldAtIndex:0].delegate = self;
+	[save show];
 	
 	if (self.voiceSearch) {
 		[self.voiceSearch cancel];
