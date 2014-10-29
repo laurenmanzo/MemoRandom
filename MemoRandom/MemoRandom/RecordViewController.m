@@ -1,5 +1,5 @@
 //
-//  FirstViewController.m
+//  RecordViewController.m
 //  MemoRandom
 //
 //  Created by Lauren Manzo on 26/10/14.
@@ -31,6 +31,8 @@ const unsigned char SpeechKitApplicationKey[] = {
 	//Set recordingJourney to NO until they press the start button.
 	self.recordingAudio = NO;
 	
+	self.recognizerError = NO;
+	
 	[MemoRandomAppDelegate setupSpeechKitConnection];
 	
 	[self setupAVAudioRecorder];
@@ -57,8 +59,8 @@ const unsigned char SpeechKitApplicationKey[] = {
 		//Initialize a new speech recognizer instance
 		self.voiceSearch = [[SKRecognizer alloc] initWithType:SKDictationRecognizerType
 													detection:SKNoEndOfSpeechDetection
-													language:@"en_US"
-													delegate:self];
+													 language:@"en_US"
+													 delegate:self];
 		
 		//Start the AVAudioRecorder
 		[self.audioRecorder record];
@@ -82,6 +84,14 @@ const unsigned char SpeechKitApplicationKey[] = {
 		
 		//Stop the AVAudioRecorder
 		[self.audioRecorder stop];
+		
+		if (self.recognizerError) {
+			//Modal popup
+			UIAlertView *save = [[UIAlertView alloc] initWithTitle:@"Save Memo" message:@"Please enter a name" delegate:self cancelButtonTitle:@"Discard" otherButtonTitles:@"Save", nil];
+			save.alertViewStyle = UIAlertViewStylePlainTextInput;
+			[save textFieldAtIndex:0].delegate = self;
+			[save show];
+		}
 	}
 }
 
@@ -128,15 +138,8 @@ const unsigned char SpeechKitApplicationKey[] = {
 }
 
 - (void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion {
-	self.recordStopButton.title = @"Record";
-	self.recordingAudio = NO;
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-													message:[error localizedDescription]
-												   delegate:nil
-										  cancelButtonTitle:@"OK"
-										  otherButtonTitles:nil];
-	[alert show];
+	NSLog(@"Recognizer Error: %@", [error localizedDescription]);
+	self.recognizerError = YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -166,6 +169,7 @@ const unsigned char SpeechKitApplicationKey[] = {
 			NSLog(@"%@, %@", error, error.localizedDescription);
 		}
 	}
+	self.recognizerError = NO;
 	[self setupAVAudioRecorder];
 }
 

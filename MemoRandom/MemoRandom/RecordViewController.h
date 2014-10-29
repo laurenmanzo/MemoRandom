@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  RecordViewController.h
 //  MemoRandom
 //
 //  Created by Lauren Manzo on 26/10/14.
@@ -20,6 +20,7 @@
 @property (nonatomic) NSTimeInterval elapsedTime;
 @property (nonatomic, strong) NSString *soundFilePath;
 @property (nonatomic, strong) NSString *result;
+@property (nonatomic) BOOL recognizerError;
 //For user interface
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *recordStopButton;
