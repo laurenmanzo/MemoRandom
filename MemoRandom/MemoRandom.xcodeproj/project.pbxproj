@@ -40,8 +40,8 @@
 		9CA2AB1819FCCE8000452C77 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1719FCCE8000452C77 /* CFNetwork.framework */; };
 		9CA2AB1A19FCCE9100452C77 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1919FCCE9100452C77 /* Security.framework */; };
 		9CA2AB1C19FCCEAD00452C77 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */; };
-		9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */; };
 		9CABC05919FF199400A6B1EB /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CABC05819FF199400A6B1EB /* Memo.m */; };
+		9CD147B01A00AA11001DA180 /* MicrophoneImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD147AF1A00AA11001DA180 /* MicrophoneImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,9 +97,9 @@
 		9CA2AB1719FCCE8000452C77 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9CA2AB1919FCCE9100452C77 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MicrophoneImage.png; path = ../../../../../Screenshots/MicrophoneImage.png; sourceTree = "<group>"; };
 		9CABC05719FF199400A6B1EB /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
 		9CABC05819FF199400A6B1EB /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
+		9CD147AF1A00AA11001DA180 /* MicrophoneImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MicrophoneImage.png; path = ../MicrophoneImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,7 +233,7 @@
 		9CA2AAFE19FCBF7800452C77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9CA2AB2119FCD8D300452C77 /* MicrophoneImage.png */,
+				9CD147AF1A00AA11001DA180 /* MicrophoneImage.png */,
 				9CA2AB0319FCBF9600452C77 /* FolderSelected.png */,
 				9CA2AAFF19FCBF8C00452C77 /* SettingsSelected.png */,
 				9CA2AB0019FCBF8C00452C77 /* MicrophoneSelected.png */,
@@ -318,9 +318,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA2AAD219FCBBC700452C77 /* Images.xcassets in Resources */,
+				9CD147B01A00AA11001DA180 /* MicrophoneImage.png in Resources */,
 				9CA2AAC119FCBBC700452C77 /* InfoPlist.strings in Resources */,
 				9CA2AB0419FCBF9600452C77 /* FolderSelected.png in Resources */,
-				9CA2AB2219FCD8D300452C77 /* MicrophoneImage.png in Resources */,
 				9CA2AAFC19FCBD6C00452C77 /* earcon_done_listening.wav in Resources */,
 				9CA2AB0119FCBF8C00452C77 /* SettingsSelected.png in Resources */,
 				9CA2AAFB19FCBD6C00452C77 /* earcon_cancel.wav in Resources */,
