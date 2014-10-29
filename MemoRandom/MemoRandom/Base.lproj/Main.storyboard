@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="dtj-EO-iXF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2VE-Yg-loa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Uo-Sm-HjF">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Uo-Sm-HjF">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="AqG-ip-1yl"/>
@@ -29,19 +29,34 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LMB-NN-Rd5"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MicrophoneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="bmc-1K-OUl">
-                                <rect key="frame" x="-6" y="39" width="332" height="445"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="710" image="MicrophoneImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="bmc-1K-OUl">
+                                <rect key="frame" x="0.0" y="84" width="320" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-7g-OJW">
-                                <rect key="frame" x="20" y="485" width="280" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-7g-OJW">
+                                <rect key="frame" x="20" y="397" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="21q-E7-WzY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dtj-EO-iXF" firstAttribute="top" secondItem="JR3-7g-OJW" secondAttribute="bottom" constant="18" id="1dq-Dt-1q0"/>
+                            <constraint firstItem="bmc-1K-OUl" firstAttribute="centerX" secondItem="2VE-Yg-loa" secondAttribute="centerX" id="AWU-Br-KSh"/>
+                            <constraint firstAttribute="centerX" secondItem="8Uo-Sm-HjF" secondAttribute="centerX" id="Gle-Tu-WG0"/>
+                            <constraint firstItem="JR3-7g-OJW" firstAttribute="top" secondItem="bmc-1K-OUl" secondAttribute="bottom" constant="1" id="Htq-9m-Wim"/>
+                            <constraint firstItem="JR3-7g-OJW" firstAttribute="centerX" secondItem="2VE-Yg-loa" secondAttribute="centerX" id="Pp7-1b-VtN"/>
+                            <constraint firstItem="JR3-7g-OJW" firstAttribute="width" secondItem="2VE-Yg-loa" secondAttribute="width" constant="-40" id="T39-gt-FFw"/>
+                            <constraint firstItem="bmc-1K-OUl" firstAttribute="top" secondItem="8Uo-Sm-HjF" secondAttribute="bottom" constant="20" id="VW7-U4-cKL"/>
+                            <constraint firstItem="8Uo-Sm-HjF" firstAttribute="top" secondItem="s9W-kb-ARv" secondAttribute="top" id="XBM-ae-POb"/>
+                            <constraint firstItem="bmc-1K-OUl" firstAttribute="width" secondItem="2VE-Yg-loa" secondAttribute="width" id="lu7-6D-Rc3"/>
+                            <constraint firstAttribute="width" secondItem="8Uo-Sm-HjF" secondAttribute="width" id="zpX-RF-Up2"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Record" image="Microphone" id="u1e-5L-l1D">
                         <userDefinedRuntimeAttributes>
@@ -65,7 +80,7 @@
             <objects>
                 <tableViewController title="Memos" id="g5U-pB-jq3" customClass="MemosTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GBF-ko-vqt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -133,7 +148,7 @@
                         <viewControllerLayoutGuide type="bottom" id="z2F-5p-yEh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="M1A-0V-hCh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEV-wi-DFA">
@@ -161,11 +176,11 @@
                                 </connections>
                             </slider>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDe-Ao-u2o">
-                                <rect key="frame" x="20" y="125" width="280" height="394"/>
+                                <rect key="frame" x="20" y="125" width="280" height="306"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTL-l2-k5M">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="394"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="306"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -257,6 +272,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
