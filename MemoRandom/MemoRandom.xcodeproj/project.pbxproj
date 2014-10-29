@@ -26,9 +26,6 @@
 		9CA2AAF319FCBBC700452C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF219FCBBC700452C77 /* CoreAudio.framework */; };
 		9CA2AAF519FCBBC700452C77 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF419FCBBC700452C77 /* AVFoundation.framework */; };
 		9CA2AAF719FCBBC700452C77 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF619FCBBC700452C77 /* SpeechKit.framework */; };
-		9CA2AAFB19FCBD6C00452C77 /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AAF819FCBD6C00452C77 /* earcon_cancel.wav */; };
-		9CA2AAFC19FCBD6C00452C77 /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AAF919FCBD6C00452C77 /* earcon_done_listening.wav */; };
-		9CA2AAFD19FCBD6C00452C77 /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AAFA19FCBD6C00452C77 /* earcon_listening.wav */; };
 		9CA2AB0119FCBF8C00452C77 /* SettingsSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AAFF19FCBF8C00452C77 /* SettingsSelected.png */; };
 		9CA2AB0219FCBF8C00452C77 /* MicrophoneSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0019FCBF8C00452C77 /* MicrophoneSelected.png */; };
 		9CA2AB0419FCBF9600452C77 /* FolderSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0319FCBF9600452C77 /* FolderSelected.png */; };
@@ -79,9 +76,6 @@
 		9CA2AAF219FCBBC700452C77 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9CA2AAF419FCBBC700452C77 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9CA2AAF619FCBBC700452C77 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechKit.framework; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/SpeechKit.framework; sourceTree = "<group>"; };
-		9CA2AAF819FCBD6C00452C77 /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_cancel.wav; sourceTree = "<group>"; };
-		9CA2AAF919FCBD6C00452C77 /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_done_listening.wav; sourceTree = "<group>"; };
-		9CA2AAFA19FCBD6C00452C77 /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_listening.wav; sourceTree = "<group>"; };
 		9CA2AAFF19FCBF8C00452C77 /* SettingsSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsSelected.png; sourceTree = "<group>"; };
 		9CA2AB0019FCBF8C00452C77 /* MicrophoneSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MicrophoneSelected.png; sourceTree = "<group>"; };
 		9CA2AB0319FCBF9600452C77 /* FolderSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FolderSelected.png; sourceTree = "<group>"; };
@@ -201,9 +195,6 @@
 		9CA2AABD19FCBBC700452C77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9CA2AAF819FCBD6C00452C77 /* earcon_cancel.wav */,
-				9CA2AAF919FCBD6C00452C77 /* earcon_done_listening.wav */,
-				9CA2AAFA19FCBD6C00452C77 /* earcon_listening.wav */,
 				9CA2AABE19FCBBC700452C77 /* MemoRandom-Info.plist */,
 				9CA2AABF19FCBBC700452C77 /* InfoPlist.strings */,
 				9CA2AAC219FCBBC700452C77 /* main.m */,
@@ -321,10 +312,7 @@
 				9CD147B01A00AA11001DA180 /* MicrophoneImage.png in Resources */,
 				9CA2AAC119FCBBC700452C77 /* InfoPlist.strings in Resources */,
 				9CA2AB0419FCBF9600452C77 /* FolderSelected.png in Resources */,
-				9CA2AAFC19FCBD6C00452C77 /* earcon_done_listening.wav in Resources */,
 				9CA2AB0119FCBF8C00452C77 /* SettingsSelected.png in Resources */,
-				9CA2AAFB19FCBD6C00452C77 /* earcon_cancel.wav in Resources */,
-				9CA2AAFD19FCBD6C00452C77 /* earcon_listening.wav in Resources */,
 				9CA2AB0219FCBF8C00452C77 /* MicrophoneSelected.png in Resources */,
 				9CA2AACA19FCBBC700452C77 /* Main.storyboard in Resources */,
 			);
