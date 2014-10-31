@@ -100,17 +100,9 @@
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath *)indexPath {
 	Memo *memo = (Memo*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    //UIImageView *imageView = (UIImageView*)[cell viewWithTag:1];
 	UILabel *memoNameLabel = (UILabel*)[cell viewWithTag:1];
 	UILabel *dateLabel = (UILabel*)[cell viewWithTag:2];
 	UILabel *lengthLabel = (UILabel*)[cell viewWithTag:3];
-	
-	/*UIImage *image = nil;
-	if ([journey.photos count] > 0) {
-		image = [[UIImage alloc] initWithData:(NSData*)[[journey.photos firstObject] image]];
-	} else {
-		image = [UIImage imageNamed:@"ImageDefault"];
-	}*/
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -118,9 +110,6 @@
 	
 	NSString *formattedDate = [dateFormatter stringFromDate:memo.date];
 	
-	//NSString *distanceTravelled = [[NSString alloc] stringFromDistance:journey.distanceTravelled];
-	
-	//[imageView setImage:image];
 	[memoNameLabel setText:memo.name];
 	[dateLabel setText:formattedDate];
 	[lengthLabel setText:memo.length];
