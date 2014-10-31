@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C66223C1A039FA400E38F83 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C66223B1A039FA400E38F83 /* SpeechKit.framework */; };
 		9CA2AAB719FCBBC700452C77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAB619FCBBC700452C77 /* Foundation.framework */; };
 		9CA2AAB919FCBBC700452C77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAB819FCBBC700452C77 /* CoreGraphics.framework */; };
 		9CA2AABB19FCBBC700452C77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AABA19FCBBC700452C77 /* UIKit.framework */; };
@@ -25,7 +26,6 @@
 		9CA2AAF119FCBBC700452C77 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF019FCBBC700452C77 /* AudioToolbox.framework */; };
 		9CA2AAF319FCBBC700452C77 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF219FCBBC700452C77 /* CoreAudio.framework */; };
 		9CA2AAF519FCBBC700452C77 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF419FCBBC700452C77 /* AVFoundation.framework */; };
-		9CA2AAF719FCBBC700452C77 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA2AAF619FCBBC700452C77 /* SpeechKit.framework */; };
 		9CA2AB0119FCBF8C00452C77 /* SettingsSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AAFF19FCBF8C00452C77 /* SettingsSelected.png */; };
 		9CA2AB0219FCBF8C00452C77 /* MicrophoneSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0019FCBF8C00452C77 /* MicrophoneSelected.png */; };
 		9CA2AB0419FCBF9600452C77 /* FolderSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA2AB0319FCBF9600452C77 /* FolderSelected.png */; };
@@ -52,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C66223B1A039FA400E38F83 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechKit.framework; path = MemoRandom/SpeechKit.framework; sourceTree = "<group>"; };
 		9CA2AAB319FCBBC700452C77 /* MemoRandom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoRandom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA2AAB619FCBBC700452C77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CA2AAB819FCBBC700452C77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -75,7 +76,6 @@
 		9CA2AAF019FCBBC700452C77 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9CA2AAF219FCBBC700452C77 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9CA2AAF419FCBBC700452C77 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		9CA2AAF619FCBBC700452C77 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechKit.framework; path = ../../../../../Downloads/DragonMobileSDK_1.4.12/SpeechKit.framework; sourceTree = "<group>"; };
 		9CA2AAFF19FCBF8C00452C77 /* SettingsSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsSelected.png; sourceTree = "<group>"; };
 		9CA2AB0019FCBF8C00452C77 /* MicrophoneSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MicrophoneSelected.png; sourceTree = "<group>"; };
 		9CA2AB0319FCBF9600452C77 /* FolderSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FolderSelected.png; sourceTree = "<group>"; };
@@ -102,12 +102,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA2AB1C19FCCEAD00452C77 /* CoreData.framework in Frameworks */,
-				9CA2AAF719FCBBC700452C77 /* SpeechKit.framework in Frameworks */,
 				9CA2AAF119FCBBC700452C77 /* AudioToolbox.framework in Frameworks */,
 				9CA2AAF519FCBBC700452C77 /* AVFoundation.framework in Frameworks */,
 				9CA2AB1819FCCE8000452C77 /* CFNetwork.framework in Frameworks */,
 				9CA2AAB919FCBBC700452C77 /* CoreGraphics.framework in Frameworks */,
 				9CA2AAF319FCBBC700452C77 /* CoreAudio.framework in Frameworks */,
+				9C66223C1A039FA400E38F83 /* SpeechKit.framework in Frameworks */,
 				9CA2AAB719FCBBC700452C77 /* Foundation.framework in Frameworks */,
 				9CA2AB1A19FCCE9100452C77 /* Security.framework in Frameworks */,
 				9CA2AAEF19FCBBC700452C77 /* SystemConfiguration.framework in Frameworks */,
@@ -150,10 +150,10 @@
 		9CA2AAB519FCBBC700452C77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C66223B1A039FA400E38F83 /* SpeechKit.framework */,
 				9CA2AB1B19FCCEAD00452C77 /* CoreData.framework */,
 				9CA2AB1919FCCE9100452C77 /* Security.framework */,
 				9CA2AB1719FCCE8000452C77 /* CFNetwork.framework */,
-				9CA2AAF619FCBBC700452C77 /* SpeechKit.framework */,
 				9CA2AAF419FCBBC700452C77 /* AVFoundation.framework */,
 				9CA2AAF219FCBBC700452C77 /* CoreAudio.framework */,
 				9CA2AAF019FCBBC700452C77 /* AudioToolbox.framework */,
@@ -469,6 +469,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/laurenmanzo/Downloads/DragonMobileSDK_1.4.12,
+					"$(PROJECT_DIR)/MemoRandom",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MemoRandom/MemoRandom-Prefix.pch";
@@ -486,6 +487,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/laurenmanzo/Downloads/DragonMobileSDK_1.4.12,
+					"$(PROJECT_DIR)/MemoRandom",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MemoRandom/MemoRandom-Prefix.pch";
